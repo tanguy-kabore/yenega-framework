@@ -1,4 +1,4 @@
-LANG = "en" # pip install python-gettext
+LANG = "en"
 APP_NAME= "APP" # pip install mysql-connector-python
 
 DATABASE= "mysql"
@@ -11,5 +11,5 @@ LOGO_ICO = "image/logo/logo.ico"
 LOGO_PNG = "image/logo/logo.png"
 
 PRIMARY_COLOR = "#fc5914" # primary color
-SECONDARY_COLOR = "#fc5914"
+SECONDARY_COLOR = "black"
 BACGROUND_COLOR = "white"
