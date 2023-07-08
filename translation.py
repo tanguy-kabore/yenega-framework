@@ -7,13 +7,14 @@ if LANG == 'en':
     SHOW_PASSWORD_LABEL = "Show Password"
     SUBMIT_LABEL = "Submit"
 
-    LOGIN_SUCCESS = "Login successful"
-    LOGIN_FAIL = "Login failed"
+    INCORRECT_PASSWORD = "Incorrect password"
+    USER_NOT_FOUND = "User not found"
     MSG_ERROR_LABEL = "Error"
     MSG_QUIT_LABEL = "Quit"
     DATABASE_CONNECTION_ERROR = "Error connecting to MySQL database."
     QUIT_QUESTION = "Are you sure you want to quit?"
 
+    OR = "or"
     QUIT_MENU = "Quit"
     FILE_MENU = "File"
     pass
@@ -24,13 +25,14 @@ elif LANG == 'fr':
     SHOW_PASSWORD_LABEL = "Montrer le mot de passe"
     SUBMIT_LABEL = "Envoyer"
 
-    LOGIN_SUCCESS = "Connexion réussie"
-    LOGIN_FAIL = "Connexion échouée"
+    INCORRECT_PASSWORD = "Mot de passe incorrect"
+    USER_NOT_FOUND = "Aucun utilisateur trouvé"
     MSG_ERROR_LABEL = "Erreur"
     MSG_QUIT_LABEL = "Quitter"
     DATABASE_CONNECTION_ERROR = "Erreur lors de la connexion à la base de données."
     QUIT_QUESTION = "Etes vous sûr de vouloir quitter?"
 
+    OR = "ou"
     QUIT_MENU = "Quitter"
     FILE_MENU = "Fichier"
     pass

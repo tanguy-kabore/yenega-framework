@@ -7,9 +7,9 @@ DATABASE_NAME= "yenega"
 DATABASE_USER= "root",
 DATABASE_PASSWORD= "root",
 
-LOGO_ICO = "image/logo/logo.ico"
-LOGO_PNG = "image/logo/logo.png"
+LOGO_ICO = "\\resource\\image\\logo\\logo.ico"
+LOGO_PNG = "\\resource\\image\\logo\\logo.png"
 
 PRIMARY_COLOR = "#fc5914" # primary color
 SECONDARY_COLOR = "black"
-BACGROUND_COLOR = "white"
+BACKGROUND_COLOR = "white"
