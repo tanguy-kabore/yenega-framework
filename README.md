@@ -31,7 +31,7 @@ python path/vers/yenega.py migrate --reset
 - `seed`: Gère l'initialisation des données dans la base de données.
 
   Options :
-  - `--admin`: Crée un accès administrateur avec les identifiants "admin" et le mot de passe haché de "admin".
+- `--admin`: Crée un accès administrateur avec les identifiants "admin" et le mot de passe haché de "admin".
 ```bash
 python yenega.py seed --admin
 ```
