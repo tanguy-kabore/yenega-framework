@@ -15,7 +15,15 @@ Avant d'utiliser le framework Yenega, assurez-vous d'avoir les éléments suivan
 ```bash
 git clone https://gitlab.com/yenega/yenega-installer.git
 ```
+Créez ensuite un projet:
+
+```bash
+python path/vers/yenega-installer.py new NomDuProjet
+```
+
 Pour plus de détails, consultez la documentation officielle [ici](https://gitlab.com/yenega/yenega-installer).
+
+> Remarque: N'oubliez pas de naviguer dans le dossier du projet nouvellement créé pour la suite.
 
 2. Configurer les paramètres du projet. Voir la section [Configuration du Projet](#1-configuration-du-projet).
 
