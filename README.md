@@ -33,6 +33,9 @@ python path/vers/yenega.py seed --admin
 ```bash
 python path/vers/yenega.py start
 ```
+Les informations de connexion sont les suivantes:
+**Username:** `admin`
+**Password:** `admin`
 
 ![Screenshot of login screen.](assets/images/login-screen.PNG)
 
