@@ -9,6 +9,55 @@ Avant d'utiliser le framework Yenega, assurez-vous d'avoir les éléments suivan
 - [Python 3](https://www.python.org/downloads)
 - [Git](https://git-scm.com/downloads)
 
+## Configuration du Projet
+
+Avant de commencer à utiliser le framework Yenega, assurez-vous de configurer les paramètres appropriés dans le fichier `env.py`. Ces paramètres définissent des configurations essentielles pour le bon fonctionnement de l'application.
+
+## Fichier `env.py`
+
+Assurez-vous de définir correctement les valeurs des paramètres suivants dans le fichier `env.py` de votre projet :
+
+### Description des Paramètres :
+
+- `LANG`: Langue par défaut de l'application.
+- `APP_NAME`: Nom de l'application.
+- `DATABASE`: Type de base de données utilisé.
+- `DATABASE_HOST`: Adresse du serveur de base de données.
+- `DATABASE_NAME`: Nom de la base de données.
+- `DATABASE_USER`: Nom d'utilisateur de la base de données. *(Par défaut: "root")*
+- `DATABASE_PASSWORD`: Mot de passe de la base de données. *(Par défaut: "root")*
+
+**Remarque:** Assurez-vous que `DATABASE_USER` et `DATABASE_PASSWORD` correspondent à l'utilisateur et au mot de passe de votre installation MySQL. Par défaut, le nom d'utilisateur est 'root' et le mot de passe est vide. Cependant, cela peut varier en fonction de votre configuration.
+
+- `LOGO_ICO`: Chemin vers le fichier ICO du logo de l'application. *(Placez l'image dans le dossier "resource/image/logo/")*
+- `LOGO_PNG`: Chemin vers le fichier PNG du logo de l'application. *(Placez l'image dans le dossier "resource/image/logo/")*
+  
+N'oubliez pas de mettre à jour ces valeurs en fonction de votre configuration spécifique.
+
+### Exemple d'Utilisation :
+
+```python
+# Exemple pour une application en français avec une base de données MySQL
+
+LANG = "fr"
+APP_NAME = "APP"
+
+DATABASE = "mysql"
+DATABASE_HOST = "localhost"
+DATABASE_NAME = "yenega"
+DATABASE_USER = "root"
+DATABASE_PASSWORD = "root"
+
+LOGO_ICO = "\\resource\\image\\logo\\logo.ico"
+LOGO_PNG = "\\resource\\image\\logo\\logo.png"
+
+PRIMARY_COLOR = "#fc5914"
+SECONDARY_COLOR = "black"
+BACKGROUND_COLOR = "white"
+```
+
+Assurez-vous que ces configurations correspondent à votre environnement et à vos préférences. Pour plus d'informations sur la configuration, consultez la documentation du framework Yenega.
+
 ## Commandes Disponibles
 
 Le framework Yenega propose les commandes suivantes :
