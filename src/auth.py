@@ -130,23 +130,13 @@ class Auth:
             if row:
                 hashed_password = row[0]
                 if bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8')):
-                    print("\tLogin successful.")
-                    return username
+                    print("Login successful.")
+                    return True
                 else:
-                    return None
-                """ else:
                     print("Incorrect password.")
                     return False
             else:
                 print("User not found.")
-                return False """
-        except mysql.connector.Error as e:
-            if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                print('\tAccess denied.')
-            elif e.errno == errorcode.ER_BAD_DB_ERROR:
-                print('\tDatabase does not exist.')
-            else:
-                if e.errno == errorcode.ER_DUP_ENTRY:
-                    print('\tData duplicate:', str(e))
-                else:
-                    print('\tAn error occurred:', str(e))
+                return False
+        except Exception as e:
+            print("An error occurred:", str(e))
