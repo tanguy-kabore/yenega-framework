@@ -26,12 +26,12 @@ python path/vers/yenega.py migrate
 
 4. Générer un accès admin. Pour plus de détails, voir la section [Commande de Peuplement de la Base de Données](#3-commande-de-peuplement-de-la-base-de-données)
 ```bash
-python yenega.py seed --admin
+python path/vers/yenega.py seed --admin
 ```
 
 5. Lancer l'application.
 ```bash
-python main.py
+python path/vers/yenega.py start
 ```
 
 ## 1. Configuration du Projet
