@@ -34,6 +34,8 @@ python path/vers/yenega.py seed --admin
 python path/vers/yenega.py start
 ```
 
+![Screenshot of login screen.](assets/images/login-screen.PNG)
+
 ## 1. Configuration du Projet
 
 Avant de commencer à utiliser le framework Yenega, assurez-vous de configurer les paramètres appropriés dans le fichier `env.py`. Ces paramètres définissent des configurations essentielles pour le bon fonctionnement de l'application.
