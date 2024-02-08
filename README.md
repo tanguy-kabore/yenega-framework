@@ -1,4 +1,3 @@
-```markdown
 # Yenega Framework
 
 Bienvenue dans le framework Yenega ! Ce framework Python exploite la bibliothèque tkinter pour construire facilement et rapidement des applications de sécurité informatique desktop multiplateforme destinées aux professionnels de la sécurité.
@@ -137,4 +136,3 @@ Les contributions sont
 ***
 
 &copy; 2024 [**B. Tanguy KABORE**](https://www.linkedin.com/in/kabore-tanguy-96ab94298/)
-```
