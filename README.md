@@ -31,7 +31,7 @@ python yenega.py seed --admin
 
 5. Lancer l'application.
 ```bash
-python yenega.py
+python main.py
 ```
 
 ## 1. Configuration du Projet
