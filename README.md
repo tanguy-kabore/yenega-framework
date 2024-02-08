@@ -1,6 +1,7 @@
+```markdown
 # Yenega Framework
 
-Bienvenue dans le framework Yenega ! Ce framework python exploite la librairie tkinter pour construire facilement et rapidement des applications de sécurité informatique desktop multiplateforme destiné au professionnel de la sécurité.
+Bienvenue dans le framework Yenega ! Ce framework Python exploite la bibliothèque tkinter pour construire facilement et rapidement des applications de sécurité informatique desktop multiplateforme destinées aux professionnels de la sécurité.
 
 ## Prérequis
 
@@ -15,17 +16,17 @@ Avant d'utiliser le framework Yenega, assurez-vous d'avoir les éléments suivan
 ```bash
 git clone https://gitlab.com/yenega/yenega-installer.git
 ```
-Pour plus de detail, consulter la documentation officielle [ici](https://gitlab.com/yenega/yenega-installer).
-1. Configurer les parametre du projet. voir la section [Configuration du Projet](#configuration-du-projet)
-1. Efectuer une migration. Pour plus de détail, voir la section [Migration de la Base de Données](#migration-de-la-base-de-données)
+Pour plus de détails, consultez la documentation officielle [ici](https://gitlab.com/yenega/yenega-installer).
+2. Configurer les paramètres du projet. Voir la section [Configuration du Projet](#1-configuration-du-projet).
+3. Effectuer une migration. Pour plus de détails, voir la section [Migration de la Base de Données](#2-migration-de-la-base-de-données)
 ```bash
 python path/vers/yenega.py migrate
 ```
-1. Générer un accès admin. Pour plus de détail, voir la section [Commande de Peuplement de la Base de Données](#mommande-de-peuplement-de-la-base-de-données)
+4. Générer un accès admin. Pour plus de détails, voir la section [Commande de Peuplement de la Base de Données](#3-commande-de-peuplement-de-la-base-de-données)
 ```bash
 python yenega.py seed --admin
 ```
-1. Lancer l'application.
+5. Lancer l'application.
 ```bash
 python yenega.py
 ```
@@ -129,8 +130,11 @@ Si vous rencontrez des problèmes lors de l'utilisation du framework Yenega, veu
 
 ## Contributions
 
-Les contributions sont les bienvenues ! Consultez [CONTRIBUTING.md]() pour obtenir des informations sur la manière de contribuer au projet.
+Les contributions sont
+
+ les bienvenues ! Consultez [CONTRIBUTING.md]() pour obtenir des informations sur la manière de contribuer au projet.
 
 ***
 
 &copy; 2024 [**B. Tanguy KABORE**](https://www.linkedin.com/in/kabore-tanguy-96ab94298/)
+```
