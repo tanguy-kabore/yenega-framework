@@ -16,15 +16,19 @@ Avant d'utiliser le framework Yenega, assurez-vous d'avoir les éléments suivan
 git clone https://gitlab.com/yenega/yenega-installer.git
 ```
 Pour plus de détails, consultez la documentation officielle [ici](https://gitlab.com/yenega/yenega-installer).
+
 2. Configurer les paramètres du projet. Voir la section [Configuration du Projet](#1-configuration-du-projet).
+
 3. Effectuer une migration. Pour plus de détails, voir la section [Migration de la Base de Données](#2-migration-de-la-base-de-données)
 ```bash
 python path/vers/yenega.py migrate
 ```
+
 4. Générer un accès admin. Pour plus de détails, voir la section [Commande de Peuplement de la Base de Données](#3-commande-de-peuplement-de-la-base-de-données)
 ```bash
 python yenega.py seed --admin
 ```
+
 5. Lancer l'application.
 ```bash
 python yenega.py
