@@ -1,6 +1,6 @@
 # Yenega Framework
 
-Bienvenue dans le framework Yenega ! Ce framework python exploite la librairie tkinter pour construire facilement et rapidement des applications desktop multiplateforme.
+Bienvenue dans le framework Yenega ! Ce framework python exploite la librairie tkinter pour construire facilement et rapidement des applications de sécurité informatique desktop multiplateforme destiné au professionnel de la sécurité.
 
 ## Prérequis
 
@@ -9,7 +9,28 @@ Avant d'utiliser le framework Yenega, assurez-vous d'avoir les éléments suivan
 - [Python 3](https://www.python.org/downloads)
 - [Git](https://git-scm.com/downloads)
 
-## Configuration du Projet
+## Installation (initialisation)
+
+1. Cloner l'installateur [yenega-installer](https://gitlab.com/yenega/yenega-installer.git)
+```bash
+git clone https://gitlab.com/yenega/yenega-installer.git
+```
+Pour plus de detail, consulter la documentation officielle [ici](https://gitlab.com/yenega/yenega-installer).
+1. Configurer les parametre du projet. voir la section [Configuration du Projet](#configuration-du-projet)
+1. Efectuer une migration. Pour plus de détail, voir la section [Migration de la Base de Données](#migration-de-la-base-de-données)
+```bash
+python path/vers/yenega.py migrate
+```
+1. Générer un accès admin. Pour plus de détail, voir la section [Commande de Peuplement de la Base de Données](#mommande-de-peuplement-de-la-base-de-données)
+```bash
+python yenega.py seed --admin
+```
+1. Lancer l'application.
+```bash
+python yenega.py
+```
+
+## 1. Configuration du Projet
 
 Avant de commencer à utiliser le framework Yenega, assurez-vous de configurer les paramètres appropriés dans le fichier `env.py`. Ces paramètres définissent des configurations essentielles pour le bon fonctionnement de l'application.
 
@@ -58,36 +79,49 @@ BACKGROUND_COLOR = "white"
 
 Assurez-vous que ces configurations correspondent à votre environnement et à vos préférences. Pour plus d'informations sur la configuration, consultez la documentation du framework Yenega.
 
-## Commandes Disponibles
+## 2. Migration de la Base de Données
 
-Le framework Yenega propose les commandes suivantes :
+Le framework Yenega requiert une base de données, et la création de l'ensemble des tables se fait à travers le processus de migration.
 
-- `migrate`: Gère la migration de la base de données.
+### Commande de Migration
+
+La commande `migrate` est utilisée pour gérer la migration de la base de données. Exécutez la commande suivante dans votre terminal :
+
 ```bash
 python path/vers/yenega.py migrate
 ```
 
-  Options:
-  - `--refresh`: Rafraîchit la base de données en supprimant toutes les tables avant la migration.
+#### Options de la Commande `migrate` :
+
+- `--refresh`: Rafraîchit la base de données en supprimant toutes les tables avant d'effectuer la migration. Utilisez la commande suivante :
 ```bash
 python path/vers/yenega.py migrate --refresh
 ```
-  - `--reset`: Supprime toutes les tables de la base de données.
+
+- `--reset`: Supprime toutes les tables de la base de données. Utilisez la commande suivante :
 ```bash
 python path/vers/yenega.py migrate --reset
 ```
 
-- `seed`: Gère l'initialisation des données dans la base de données.
+Assurez-vous d'être dans le répertoire du projet et d'avoir activé l'environnement virtuel si nécessaire avant d'exécuter ces commandes. Ces options offrent une flexibilité supplémentaire lors de la gestion des migrations de base de données pour votre projet Yenega.
 
-  Options :
-- `--admin`: Crée un accès administrateur avec les identifiants "admin" et le mot de passe haché de "admin".
+### 3. Commande de Peuplement de la Base de Données
+
+Le framework Yenega nécessite une authentification, ce qui implique la création d'un accès pour se connecter.
+
+#### Options de la Commande `seed` :
+
+- `--admin`: Crée un accès administrateur avec les identifiants "admin" et le mot de passe haché de "admin". Utilisez la commande suivante :
 ```bash
 python yenega.py seed --admin
 ```
-  - `--force`: Force la recréation de l'accès administrateur s'il existe déjà.
+
+- `--force`: Force la recréation de l'accès administrateur s'il existe déjà. Utilisez la commande suivante :
 ```bash
 python yenega.py seed --force
 ```
+
+Assurez-vous d'être dans le répertoire du projet et d'avoir activé l'environnement virtuel si nécessaire avant d'exécuter ces commandes. Ces options permettent de gérer de manière flexible la création d'accès administrateur dans votre projet Yenega.
 
 ## Problèmes Connus
 

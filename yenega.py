@@ -8,7 +8,6 @@ from src.auth import Auth
 current_dir = os.path.dirname(os.path.abspath(__file__))
 # Navigate up two directories to reach the project directory
 project_dir = os.path.abspath(os.path.join(current_dir))
-print(project_dir)
 # Create the main parser
 parser = argparse.ArgumentParser(description='CLI du framework yenega')
 # Define a command with its action

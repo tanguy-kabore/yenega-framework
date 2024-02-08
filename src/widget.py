@@ -1,5 +1,5 @@
 import os
-from tkinter import Tk, Label, Entry, Button
+from tkinter import Tk, Label, Entry, Button, Frame, BOTH
 from PIL import ImageTk, Image
 import screeninfo # Script to intall library: pip install screeninfo
 from env import *
@@ -62,3 +62,15 @@ class Widget:
         for j in range(column_number):  # Number of columns
             screen.grid_columnconfigure(j, weight=1)
         return screen
+
+    @staticmethod
+    def create_frame(master, bg, row_number, column_number):
+        frame = Frame(master, bg=bg)
+        frame.grid(sticky='nsew')
+        for i in range(row_number):  # Configure rows to resize proportionally
+            frame.grid_rowconfigure(i, weight=1)
+            
+        for j in range(column_number):  # Configure columns to resize proportionally
+            frame.grid_columnconfigure(j, weight=1)
+        
+        return frame

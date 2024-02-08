@@ -1,4 +1,5 @@
 import mysql.connector # pip install mysql-connector-python
+from mysql.connector import errorcode
 from env import DATABASE, DATABASE_HOST, DATABASE_USER, DATABASE_PASSWORD, DATABASE_NAME
 
 class DB:
@@ -18,7 +19,15 @@ class DB:
             else:
                 print(f"'{DATABASE}' is not supported")
         except mysql.connector.Error as e:
-            print("An error occurred:", str(e))
+            if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print('\tAccess denied.')
+            elif e.errno == errorcode.ER_BAD_DB_ERROR:
+                print('\tDatabase does not exist.')
+            else:
+                if e.errno == errorcode.ER_DUP_ENTRY:
+                    print('\tData duplicate:', str(e))
+                else:
+                    print('\tAn error occurred:', str(e))
 
     @staticmethod
     def db_create(database_name):
@@ -39,8 +48,16 @@ class DB:
             # Close the cursor and connection
             cursor.close()
             connection.close()
-        except Exception as e:
-            print("An error occurred:", str(e))
+        except mysql.connector.Error as e:
+            if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print('\tAccess denied.')
+            elif e.errno == errorcode.ER_BAD_DB_ERROR:
+                print('\tDatabase does not exist.')
+            else:
+                if e.errno == errorcode.ER_DUP_ENTRY:
+                    print('\tData duplicate:', str(e))
+                else:
+                    print('\tAn error occurred:', str(e))
 
     @staticmethod
     def db_connection():
@@ -59,7 +76,15 @@ class DB:
             else:
                 print(f"\t'{DATABASE}' is not supported")
         except mysql.connector.Error as e:
-            print("An error occurred:", str(e))
+            if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print('\tAccess denied.')
+            elif e.errno == errorcode.ER_BAD_DB_ERROR:
+                print('\tDatabase does not exist.')
+            else:
+                if e.errno == errorcode.ER_DUP_ENTRY:
+                    print('\tData duplicate:', str(e))
+                else:
+                    print('\tAn error occurred:', str(e))
 
     @staticmethod
     def create_table_from_sql_file(sql_file_path):
@@ -80,8 +105,16 @@ class DB:
             connection.commit()
             cursor.close()
             connection.close()
-        except Exception as e:
-            print("An error occurred:", str(e))
+        except mysql.connector.Error as e:
+            if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print('\tAccess denied.')
+            elif e.errno == errorcode.ER_BAD_DB_ERROR:
+                print('\tDatabase does not exist.')
+            else:
+                if e.errno == errorcode.ER_DUP_ENTRY:
+                    print('\tData duplicate:', str(e))
+                else:
+                    print('\tAn error occurred:', str(e))
     
     @staticmethod
     def seed_table_from_sql_file(sql_file_path):
@@ -102,8 +135,16 @@ class DB:
             connection.commit()
             cursor.close()
             connection.close()
-        except Exception as e:
-            print("An error occurred:", str(e))
+        except mysql.connector.Error as e:
+            if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print('\tAccess denied.')
+            elif e.errno == errorcode.ER_BAD_DB_ERROR:
+                print('\tDatabase does not exist.')
+            else:
+                if e.errno == errorcode.ER_DUP_ENTRY:
+                    print('\tData duplicate:', str(e))
+                else:
+                    print('\tAn error occurred:', str(e))
 
     @staticmethod
     def delete_all_tables():
@@ -111,6 +152,19 @@ class DB:
             # Connect to the MySQL database
             connection = DB.db_connection()
             cursor = connection.cursor()
+            # Get the list of foreign keys for the user_roles table
+            cursor.execute("SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'user_roles' AND REFERENCED_TABLE_NAME IS NOT NULL")
+            # Fetch all the foreign keys
+            foreign_keys = cursor.fetchall()
+            # Generate the ALTER TABLE statements to drop each foreign key
+            alter_table_statements = []
+            for fk in foreign_keys:
+                constraint_name = fk[0]
+                alter_table_statement = f"ALTER TABLE user_roles DROP FOREIGN KEY {constraint_name}"
+                alter_table_statements.append(alter_table_statement)
+            # Execute the ALTER TABLE statements to drop the foreign keys
+            for alter_table_statement in alter_table_statements:
+                cursor.execute(alter_table_statement)
             # Retrieve the list of table names
             cursor.execute("SHOW TABLES")
             tables = cursor.fetchall()
@@ -123,5 +177,13 @@ class DB:
             connection.commit()
             cursor.close()
             connection.close()
-        except Exception as e:
-            print("An error occurred:", str(e))
+        except mysql.connector.Error as e:
+            if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+                print('\tAccess denied.')
+            elif e.errno == errorcode.ER_BAD_DB_ERROR:
+                print('\tDatabase does not exist.')
+            else:
+                if e.errno == errorcode.ER_DUP_ENTRY:
+                    print('\tData duplicate:', str(e))
+                else:
+                    print('\tAn error occurred:', str(e))

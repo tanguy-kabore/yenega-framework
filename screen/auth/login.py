@@ -103,11 +103,10 @@ class LoginScreen:
     def login_button_clicked(self, event=None):
         username = self.username_entry.get()
         password = self.password_entry.get()
-        status = Auth.validate_login(username, password)  # Perform login validation with retrieved values
-        if status == True:
+        user_info = Auth.validate_login(username, password)  # Perform login validation with retrieved values
+        if user_info != None:
             self.root.destroy()  # Close the login window
-            HomeScreen()
-        else:
-            
+            HomeScreen(user_info)
+        else: 
             self.label_status.config(text=USER_NOT_FOUND+" "+OR+" "+INCORRECT_PASSWORD, fg='red')
         
