@@ -130,15 +130,22 @@ Le framework Yenega nécessite une authentification, ce qui implique la créatio
 
 - `--admin`: Crée un accès administrateur avec les identifiants "admin" et le mot de passe haché de "admin". Utilisez la commande suivante :
 ```bash
-python yenega.py seed --admin
+python path/vers/yenega.py seed --admin
 ```
 
 - `--force`: Force la recréation de l'accès administrateur s'il existe déjà. Utilisez la commande suivante :
 ```bash
-python yenega.py seed --force
+python path/vers/yenega.py seed --force
 ```
 
 Assurez-vous d'être dans le répertoire du projet et d'avoir activé l'environnement virtuel si nécessaire avant d'exécuter ces commandes. Ces options permettent de gérer de manière flexible la création d'accès administrateur dans votre projet Yenega.
+
+### 4. Mise à jour
+Executer la commande suivante dans votre terminal pour mettre à jour votre projet avec les dernieres mise à jour du framework:
+
+```bash
+python path/vers/yenega.py update
+```
 
 ## Problèmes Connus
 

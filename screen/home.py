@@ -46,7 +46,7 @@ class HomeScreen:
         self.steganography_menu = Menu(self.tool_menu, tearoff=0)
         self.steganography_menu.add_command(label='Hide Text', command=self.hide_text_message)
         self.steganography_menu.add_command(label='Extract Text', command=self.extract_text_message)
-        self.steganography_menu.add_command(label='Clear Text', command=self.clear_text_message)
+        # self.steganography_menu.add_command(label='Clear Text', command=self.clear_text_message)
         self.steganography_menu.add_command(label='Steganography ?', command=self.check_steganography)
         self.tool_menu.add_cascade(label='Steganography', menu=self.steganography_menu)
 

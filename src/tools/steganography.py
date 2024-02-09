@@ -1,5 +1,9 @@
 from tkinter import messagebox, filedialog, simpledialog
 from stegano import lsb
+import logging
+
+# Assuming you have configured the logging as mentioned before
+logger = logging.getLogger()
 
 class Steganography:
     @staticmethod
@@ -61,12 +65,21 @@ class Steganography:
     @staticmethod
     def check_steganography():
         stegano_image_path = filedialog.askopenfilename(title="Select Stegano Image")
-        
+
         if stegano_image_path:
             try:
-                message = lsb.reveal(stegano_image_path)
-                messagebox.showinfo("Steganography Check", "The image contains a hidden message.")
-            except:
-                messagebox.showinfo("Steganography Check", "The image does not contain a hidden message.")
+                revealed_message = lsb.reveal(stegano_image_path)
+                
+                if revealed_message:
+                    messagebox.showinfo("Steganography Check", "The image contains a hidden message.")
+                    logger.info("Image contains a hidden message: %s", stegano_image_path)
+                else:
+                    messagebox.showinfo("Steganography Check", "The image does not contain a hidden message.")
+                    logger.info("Image does not contain a hidden message: %s", stegano_image_path)
+
+            except IndexError as e:
+                messagebox.showinfo("Steganography Check", "Impossible to detect message.")
+                logger.info("Impossible to detect message in %s: %s", stegano_image_path, str(e))
         else:
             messagebox.showwarning("Warning", "No stegano image selected.")
+            logger.warning("No stegano image selected for steganography check.")

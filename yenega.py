@@ -1,6 +1,7 @@
 import os
 import argparse
 import glob
+import subprocess
 from src.database import DB
 from src.auth import Auth
 from screen.auth.login import LoginScreen
@@ -12,7 +13,7 @@ project_dir = os.path.abspath(os.path.join(current_dir))
 # Create the main parser
 parser = argparse.ArgumentParser(description='CLI du framework yenega')
 # Define a command with its action
-parser.add_argument('command', choices=['migrate', 'seed', 'start'], help='Available commands')
+parser.add_argument('command', choices=['migrate', 'seed', 'start', 'update'], help='Available commands')
 
 # Add optional command "refresh" associated with "migrate"
 if 'migrate' in parser.parse_known_args()[0].command:
@@ -74,10 +75,18 @@ elif args.command == 'seed':
             DB.seed_table_from_sql_file(sql_file)
             print(f"\tSuccessfully seed table from SQL file: '{file_name}'.")
     print('Database seed finished successfully.')
+elif args.command == 'update':
+    print('Updating the code...')
+    try:
+        subprocess.check_output(['git', 'pull'], cwd=project_dir)
+        print('Code updated successfully.')
+    except subprocess.CalledProcessError as e:
+        print(f'Error updating code: {e}')
+        
 elif args.command == 'start':
     print('Starting the application ...')
     # Appeler la fonction principale ou instancier la classe principale ici
     LoginScreen()
 
 else:
-    print('Invalid command. Use "migrate", "seed", or "start".')
+    print('Invalid command. Use "migrate", "seed", "start", or "update".')
