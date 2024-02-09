@@ -26,44 +26,62 @@ if 'seed' in parser.parse_known_args()[0].command:
 # Parse the command-line arguments
 args = parser.parse_args()
 
+# Define ANSI escape codes for colors
+class Colors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 # Perform actions based on the chosen command
 if args.command == 'migrate':
     # Specify the path to the folder containing SQL files
     folder_path = os.path.join(project_dir, 'database', 'migration')
     # Get a list of SQL files in the folder
     sql_files = glob.glob(os.path.join(folder_path, '*.sql'))
-    print('Database migration started ...')
+
+    print(f'{Colors.OKBLUE}Database migration started ...{Colors.ENDC}')
+
     if args.refresh:
-        print('\tRefreshing database ...')
+        print(f'{Colors.OKCYAN}\tRefreshing database ...{Colors.ENDC}')
         DB.delete_all_tables()  # Call the method to delete all tables
         # Iterate through each SQL file and create tables
         for sql_file in sql_files:
             file_name = os.path.basename(sql_file)
             DB.create_table_from_sql_file(sql_file)
-            print(f"\tSuccessfully Created table from SQL file: '{file_name}'.")
-        print('\tDatabase refreshed successfully.')
+            print(f"{Colors.OKGREEN}\tSuccessfully Created table from SQL file: '{file_name}'.{Colors.ENDC}")
+        print(f'{Colors.OKCYAN}\tDatabase refreshed successfully.{Colors.ENDC}')
+
     if args.reset:
-        print('\tDropping all table ...')
+        print(f'{Colors.WARNING}\tDropping all table ...{Colors.ENDC}')
         DB.delete_all_tables()  # Call the method to delete all tables
-        print('\tAll table droped successfully.')
-    else: 
+        print(f'{Colors.WARNING}\tAll table dropped successfully.{Colors.ENDC}')
+    else:
         # Iterate through each SQL file and create tables
         for sql_file in sql_files:
             file_name = os.path.basename(sql_file)
             DB.create_table_from_sql_file(sql_file)
-            print(f"\tSuccessfully Created table from SQL file: '{file_name}'.")
-    print('Database migration finished successfully.')
+            print(f"{Colors.OKGREEN}\tSuccessfully Created table from SQL file: '{file_name}'.{Colors.ENDC}")
+
+    print(f'{Colors.OKBLUE}Database migration finished successfully.{Colors.ENDC}')
 
 elif args.command == 'seed':
-    print('Database seed started ...')
+    print(f'{Colors.OKBLUE}Database seed started ...{Colors.ENDC}')
+
     if args.admin:
-        print('\tSeeding admin ...')
+        print(f'{Colors.OKCYAN}\tSeeding admin ...{Colors.ENDC}')
         Auth.register_user('admin', 'admin')
-        print('\tadmin seeded successfully.')
+        print(f'{Colors.OKGREEN}\tadmin seeded successfully.{Colors.ENDC}')
+
         if args.force:
-            print('\tForce to seed admin')
+            print(f'{Colors.WARNING}\tForce to seed admin{Colors.ENDC}')
             Auth.force_register_user('admin', 'admin')
-            print('\tadmin seeded successfully.')
+            print(f'{Colors.OKGREEN}\tadmin seeded successfully.{Colors.ENDC}')
     else:
         # Specify the path to the folder containing SQL files
         folder_path = os.path.join(project_dir, 'database', 'seeder')
@@ -73,20 +91,23 @@ elif args.command == 'seed':
         for sql_file in sql_files:
             file_name = os.path.basename(sql_file)
             DB.seed_table_from_sql_file(sql_file)
-            print(f"\tSuccessfully seed table from SQL file: '{file_name}'.")
-    print('Database seed finished successfully.')
+            print(f"{Colors.OKGREEN}\tSuccessfully seed table from SQL file: '{file_name}'.{Colors.ENDC}")
+
+    print(f'{Colors.OKBLUE}Database seed finished successfully.{Colors.ENDC}')
+
 elif args.command == 'update':
-    print('Updating the code...')
+    print(f'{Colors.OKBLUE}Updating the code...{Colors.ENDC}')
+
     try:
         subprocess.check_output(['git', 'pull'], cwd=project_dir)
-        print('Code updated successfully.')
+        print(f'{Colors.OKGREEN}Code updated successfully.{Colors.ENDC}')
     except subprocess.CalledProcessError as e:
-        print(f'Error updating code: {e}')
-        
+        print(f'{Colors.FAIL}Error updating code: {e}{Colors.ENDC}')
+
 elif args.command == 'start':
-    print('Starting the application ...')
+    print(f'{Colors.OKBLUE}Starting the application ...{Colors.ENDC}')
     # Appeler la fonction principale ou instancier la classe principale ici
     LoginScreen()
 
 else:
-    print('Invalid command. Use "migrate", "seed", "start", or "update".')
+    print(f'{Colors.FAIL}Invalid command. Use "migrate", "seed", "start", or "update".{Colors.ENDC}')
