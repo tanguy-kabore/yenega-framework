@@ -1,8 +1,10 @@
 from tkinter import *
 from tkinter import messagebox
 from src.widget import Widget
-from src.tool import Steganography, Device, Network
 from translation import *
+from src.tools.device import Device
+from src.tools.network import Network
+from src.tools.steganography import Steganography
 
 class HomeScreen:
     def __init__(self, user_info):
@@ -10,6 +12,7 @@ class HomeScreen:
         self.user_info = user_info
         self.current_frame = None
         self.create_menu_bar()
+        self.create_welcome_label()
         self.root.mainloop()
 
     def create_menu_bar(self):
@@ -18,6 +21,14 @@ class HomeScreen:
         if self.user_info == "admin":
             self.create_tool_menu()
         self.root.config(menu=self.menu_bar)
+    
+    def create_welcome_label(self):
+        # Create a label widget for the welcome message
+        welcome_label = Label(self.root, text="Welcome to the world of Ethical Hacking", font=("Abnes", 20, "bold"))
+
+        # Center the label in the window
+        welcome_label.pack(expand=True)
+        welcome_label.place(relx=0.5, rely=0.5, anchor=CENTER)
 
     def create_file_menu(self):
         self.file_menu = Menu(self.menu_bar, tearoff=0)

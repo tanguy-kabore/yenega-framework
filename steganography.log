@@ -1,0 +1,19 @@
+INFO:root:Text message extracted successfully from C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+INFO:root:Steganography check successful in C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+INFO:root:Hidden message cleared successfully in C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+INFO:root:Steganography check successful in C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+INFO:root:Hidden message cleared successfully in C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+INFO:root:Text message hidden successfully in C:/Users/HP/Pictures/Armoirie/bodylogin.jpg
+INFO:root:No hidden message found in C:/Users/HP/Pictures/Armoirie/bodylogin.jpg
+2024-02-09 01:10:29,526 - INFO - Steganography check successful in C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+2024-02-09 01:11:47,038 - INFO - Text message hidden successfully in C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+2024-02-09 01:12:24,080 - INFO - Text message extracted successfully from C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+2024-02-09 01:12:48,607 - INFO - Hidden message cleared successfully in C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+2024-02-09 01:13:09,619 - INFO - Steganography check successful in C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+2024-02-09 01:13:26,138 - INFO - Text message extracted successfully from C:/Users/HP/Pictures/Armoirie/Flag_of_Burkina_Faso.svg.png
+2024-02-09 01:34:53,249 - ERROR - Error clearing hidden message: Impossible to detect message.
+2024-02-09 01:41:33,623 - ERROR - Error extracting text message: Impossible to detect message.
+2024-02-09 01:42:11,223 - ERROR - Error clearing hidden message: Impossible to detect message.
+2024-02-09 01:42:27,201 - ERROR - Error extracting text message: Impossible to detect message.
+2024-02-09 01:42:58,410 - ERROR - Error extracting text message: Impossible to detect message.
+2024-02-09 01:43:11,996 - ERROR - Error clearing hidden message: Impossible to detect message.
