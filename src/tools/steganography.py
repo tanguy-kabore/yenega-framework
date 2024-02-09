@@ -1,3 +1,4 @@
+import os
 from tkinter import messagebox, filedialog, simpledialog
 from stegano import lsb
 import logging
@@ -19,11 +20,15 @@ class Steganography:
                 try:
                     # Cacher le message texte dans l'image de couverture
                     stegano_image = lsb.hide(cover_image_path, text_message)
-                    stegano_image.save(cover_image_path)  # Écraser l'image de couverture avec l'image stégano
-                    messagebox.showinfo("Success", "Text message hidden successfully!")
+                    
+                    # Obtenir le chemin de l'image stégano
+                    stegano_image_path = os.path.splitext(cover_image_path)[0] + "_stegano.png"
+                    
+                    stegano_image.save(stegano_image_path)  # Enregistrer l'image stégano
+                    messagebox.showinfo("Success", f"Text message hidden successfully! Stégano image saved at {stegano_image_path}")
                 except Exception as e:
                     messagebox.showerror("Error", f"An error occurred while hiding the text message: {str(e)}")
-                    print(f"Error: {str(e)}")
+                    print(f"Steganography Error: {str(e)}")
             else:
                 messagebox.showwarning("Warning", "No text message provided.")
         else:
@@ -38,15 +43,16 @@ class Steganography:
             try:
                 # Extract the hidden text message from the stegano image
                 text_message = lsb.reveal(stegano_image_path)
-                if text_message:
+                
+                if text_message is not None:
                     messagebox.showinfo("Extracted Text", f"The hidden text message is:\n\n{text_message}")
                 else:
                     messagebox.showinfo("Extracted Text", "No hidden text message found.")
             except Exception as e:
-                messagebox.showerror("Error", f"An error occurred while extracting the text message: {str(e)}")
+                messagebox.showerror("Error", f"An unexpected error occurred: {str(e)}")
         else:
             messagebox.showwarning("Warning", "No stegano image selected.")
-
+            
     @staticmethod
     def clear_text_message():
         stegano_image_path = filedialog.askopenfilename(title="Select Stegano Image")
