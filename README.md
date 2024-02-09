@@ -153,9 +153,7 @@ Si vous rencontrez des problèmes lors de l'utilisation du framework Yenega, veu
 
 ## Contributions
 
-Les contributions sont
-
- les bienvenues ! Consultez [CONTRIBUTING.md]() pour obtenir des informations sur la manière de contribuer au projet.
+Les contributions sont les bienvenues ! Consultez [CONTRIBUTING.md]() pour obtenir des informations sur la manière de contribuer au projet.
 
 ***
 
