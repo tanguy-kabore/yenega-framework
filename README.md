@@ -174,11 +174,11 @@ python path/vers/yenega.py clean
 
 ## Problèmes Connus
 
-Si vous rencontrez des problèmes lors de l'utilisation du framework Yenega, veuillez consulter les sections "Problèmes Courants" ou "Contributions" dans le fichier [CONTRIBUTING.md]() pour obtenir de l'aide.
+Si vous rencontrez des problèmes lors de l'utilisation du framework Yenega, veuillez consulter les sections "Problèmes Courants" ou "Contributions" dans le fichier [CONTRIBUTING.md](CONTRIBUTING.md) pour obtenir de l'aide.
 
 ## Contributions
 
-Les contributions sont les bienvenues ! Consultez [CONTRIBUTING.md]() pour obtenir des informations sur la manière de contribuer au projet.
+Les contributions sont les bienvenues ! Consultez [CONTRIBUTING.md](CONTRIBUTING.md) pour obtenir des informations sur la manière de contribuer au projet.
 
 ***
 
