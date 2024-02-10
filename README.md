@@ -165,10 +165,8 @@ python path/vers/yenega.py get --dependencies DependenceName
 
 **Nettoyer ou supprimer toutes les dépendences:**
 
-```markdown
 ⚠️ **Avertissement : Utilisez cette commande avec précaution !**
 Cette commande a le pouvoir de supprimer toutes les dépendances du projet. Assurez-vous d'avoir une sauvegarde ou une procédure de restauration en place avant de l'exécuter.
-```
 
 ```bash
 python path/vers/yenega.py clean
