@@ -149,7 +149,7 @@ elif args.command == 'get':
         dependencies = args.dependencies
     else:
         # Si non fourni, utilisez une liste prédéfinie
-        dependencies = ["mysql-connector-python", "Pillow", "clamd"]
+        dependencies = ["mysql-connector-python", "Pillow", "clamd", "pyclamd" "wmi", "mysql-connector-python", "bcrypt", "Pillow", "screeninfo", "psutil", "stegano"]
     
     # Installez les dépendances
     install_dependencies(project_dir, dependencies)

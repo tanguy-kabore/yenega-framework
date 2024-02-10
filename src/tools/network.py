@@ -25,7 +25,7 @@ class Network:
             frame,
             'Network information',
             SECONDARY_COLOR,
-            "Abnes 30 bold"
+            "Abnes 20 bold"
         )
         info_label.grid(row=0, column=0, columnspan=2, sticky='we')
         info_label.configure(bg='white')  # Use 'white' as canvas background is set to 'white'
