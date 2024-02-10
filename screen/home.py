@@ -1,10 +1,10 @@
-import subprocess
 from tkinter import *
 from tkinter import messagebox, filedialog
 from src.widget import Widget
 from src.tools.device import Device
 from src.tools.network import Network
 from src.tools.steganography import Steganography
+from src.tools.antivirus import AntivirusScanner
 
 class HomeScreen:
     def __init__(self, user_info):
@@ -112,19 +112,3 @@ class HomeScreen:
 if __name__ == "__main__":
     user_info = "admin"  # Replace with actual user info
     app = HomeScreen(user_info)
-
-class AntivirusScanner:
-    @staticmethod
-    def perform_scan(file_path):
-        try:
-            result = subprocess.run(['clamscan', '--no-summary', file_path], capture_output=True, text=True)
-
-            if result.returncode == 0:
-                return "No threats found. File is clean."
-            elif result.returncode == 1:
-                return "Threat Found: Malware detected."
-            else:
-                return f"Error occurred during the scan. ClamAV returned {result.returncode}"
-
-        except Exception as e:
-            return f"Error: {str(e)}"
