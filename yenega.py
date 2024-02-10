@@ -1,6 +1,7 @@
 import os
 import argparse
 import glob
+import platform
 import subprocess
 from src.database import DB
 from src.auth import Auth
@@ -13,7 +14,9 @@ project_dir = os.path.abspath(os.path.join(current_dir))
 # Create the main parser
 parser = argparse.ArgumentParser(description='CLI du framework yenega')
 # Define a command with its action
-parser.add_argument('command', choices=['migrate', 'seed', 'start', 'update'], help='Available commands')
+parser.add_argument('command', choices=['migrate', 'seed', 'start', 'update', 'clean', 'get'], help='Available commands')
+parser.add_argument("project_name", nargs="?", help="Specify the project name.")
+parser.add_argument("--dependencies", nargs="+", help="Specify dependencies for 'get' command.")
 
 # Add optional command "refresh" associated with "migrate"
 if 'migrate' in parser.parse_known_args()[0].command:
@@ -37,6 +40,32 @@ class Colors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+
+def install_dependencies(project_name, dependencies):
+    activate_env_command = os.path.join(project_name, "venv", "Scripts", "activate") if platform.system() == "Windows" \
+        else f"source {os.path.join(project_name, 'venv', 'bin', 'activate')}"
+
+    subprocess.run(activate_env_command, shell=True)
+
+    try:
+        subprocess.run(["python", "-m", "pip", "install", "--upgrade"] + dependencies, check=True)
+        print(f"{Colors.OKGREEN}Dependencies installed/updated successfully: {', '.join(dependencies)}{Colors.ENDC}")
+    except subprocess.CalledProcessError as e:
+        print(f"{Colors.FAIL}Error occurred during dependency installation/update: {e}{Colors.ENDC}")
+
+def clean_dependencies(project_name):
+    activate_env_command = os.path.join(project_name, "venv", "Scripts", "activate") if platform.system() == "Windows" \
+        else f"source {os.path.join(project_name, 'venv', 'bin', 'activate')}"
+
+    subprocess.run(activate_env_command, shell=True)
+
+    try:
+        subprocess.run(["python", "-m", "pip", "freeze", "--local"], stdout=subprocess.PIPE, check=True)
+        subprocess.run(["grep", "-v", "^#"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, check=True)
+        subprocess.run(["xargs", "pip", "uninstall", "-y"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, check=True, shell=True)
+        print(f"{Colors.OKGREEN}Cleaned all dependencies from the virtual environment.{Colors.ENDC}")
+    except subprocess.CalledProcessError as e:
+        print(f"{Colors.FAIL}Error occurred during dependency cleanup: {e}{Colors.ENDC}")
 
 # Perform actions based on the chosen command
 if args.command == 'migrate':
@@ -109,5 +138,21 @@ elif args.command == 'start':
     # Appeler la fonction principale ou instancier la classe principale ici
     LoginScreen()
 
+elif args.command == 'clean':
+    clean_dependencies(project_dir)
+
+elif args.command == 'get':
+    print(f'{Colors.OKBLUE}Getting dependencies...{Colors.ENDC}')
+
+    # Vérifiez si l'argument --dependencies est fourni
+    if args.dependencies:
+        dependencies = args.dependencies
+    else:
+        # Si non fourni, utilisez une liste prédéfinie
+        dependencies = ["mysql-connector-python", "Pillow", "clamd"]
+    
+    # Installez les dépendances
+    install_dependencies(project_dir, dependencies)
+
 else:
-    print(f'{Colors.FAIL}Invalid command. Use "migrate", "seed", "start", or "update".{Colors.ENDC}')
+    print(f'{Colors.FAIL}Invalid command. Use "migrate", "seed", "start", "update", "clean", or "get".{Colors.ENDC}')

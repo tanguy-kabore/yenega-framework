@@ -19,7 +19,7 @@ class LoginScreen:
         aspect_ratio = width / height
         new_width = width // 3  # Adjust as needed, same as the number of row
         new_height = int(new_width / aspect_ratio)
-        image = image.resize((new_width, new_height), Image.ANTIALIAS)
+        image = image.resize((new_width, new_height))
         photo = ImageTk.PhotoImage(image)
         # Create a label to display the image
         image_label = Label(self.root, image=photo)

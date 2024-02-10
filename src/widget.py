@@ -45,7 +45,7 @@ class Widget:
         project_dir = os.path.abspath(os.path.join(current_dir, '..'))
         # Load the icon image and resize if necessary
         icon_image = Image.open(project_dir+LOGO_ICO)
-        icon_image = icon_image.resize((32, 32), Image.ANTIALIAS)
+        icon_image = icon_image.resize((32, 32))
         # Create a PhotoImage object from the resized image
         icon_photo = ImageTk.PhotoImage(icon_image)
         screen.iconphoto(True, icon_photo)
