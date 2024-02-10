@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import Toplevel, Label, Frame
 from tkinter import messagebox, filedialog
 from src.widget import Widget
 from src.tools.device import Device
@@ -43,7 +44,7 @@ class HomeScreen:
 
     def create_tool_menu(self):
         self.tool_menu = Menu(self.menu_bar, tearoff=0)
-        self.tool_menu.add_command(label='Device', command=self.show_device_frame)
+        self.tool_menu.add_command(label='Device', command=lambda: self.create_frame('Device'))
         self.tool_menu.add_command(label='Network', command=lambda: self.create_frame('Network'))
         self.create_steganography_submenu()
         self.menu_bar.add_cascade(label="Tools", menu=self.tool_menu)
@@ -71,16 +72,13 @@ class HomeScreen:
 
     def create_frame(self, frame_name):
         self.close_current_frame()
+
         if frame_name == 'Device':
-            self.current_frame = Device.device_info(self.root)
+            DeviceWindow(self.root)
         elif frame_name == 'Network':
-            self.current_frame = Network.network_info(self.root)
+            NetworkWindow(self.root)
         else:
             messagebox.showerror("Error", f"Unknown frame name: {frame_name}")
-
-    def show_device_frame(self):
-        self.close_welcome_label()
-        self.create_frame('Device')
 
     def close_welcome_label(self):
         if self.white_frame is not None:
@@ -103,10 +101,64 @@ class HomeScreen:
     @staticmethod
     def perform_antivirus_scan(file_path):
         return AntivirusScanner.perform_scan(file_path)
-    
+
     def show_antivirus_scan_result(self, result, file_path):
         messagebox.showinfo("Antivirus Scan Result", f"Scan Result for {file_path}:\n\n{result}")
 
+class DeviceWindow(Toplevel):
+    def __init__(self, root):
+        super().__init__(root)
+        self.title('Device')
+        self.configure_resizable()
+        self.center_window()
+        device_frame = Device.device_info(self)
+        device_frame.pack(fill='both', expand=True, padx=10, pady=10)
+
+    def configure_resizable(self):
+        self.resizable(True, True)  # Permet de redimensionner la fenêtre
+
+    def center_window(self):
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+
+        width_percent = 0.75
+        height_percent = 0.75
+
+        width = int(screen_width * width_percent)
+        height = int(screen_height * height_percent)
+
+        x_position = (screen_width - width) // 2
+        y_position = (screen_height - height) // 2
+
+        self.geometry("{}x{}+{}+{}".format(width, height, x_position, y_position))
+
+
+class NetworkWindow(Toplevel):
+    def __init__(self, root):
+        super().__init__(root)
+        self.title('Network')
+        self.configure_resizable()
+        self.center_window()
+        network_frame = Network.network_info(self)
+        network_frame.pack(fill='both', expand=True, padx=10, pady=10)
+
+    def configure_resizable(self):
+        self.resizable(True, True)  # Permet de redimensionner la fenêtre
+
+    def center_window(self):
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+
+        width_percent = 0.75
+        height_percent = 0.75
+
+        width = int(screen_width * width_percent)
+        height = int(screen_height * height_percent)
+
+        x_position = (screen_width - width) // 2
+        y_position = (screen_height - height) // 2
+
+        self.geometry("{}x{}+{}+{}".format(width, height, x_position, y_position))
 
 # Run the application
 if __name__ == "__main__":

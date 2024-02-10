@@ -78,12 +78,4 @@ class Network:
         # Update the number of rows in the frame
         frame.grid_rowconfigure(row, weight=1)
 
-        # Bind the canvas to the frame for scrolling
-        canvas.bind('<Configure>', lambda event, canvas=canvas: Network.on_frame_configure(canvas))
-
         return frame
-
-    @staticmethod
-    def on_frame_configure(canvas):
-        # Update the scroll region of the canvas when the frame size changes
-        canvas.configure(scrollregion=canvas.bbox('all'))
