@@ -1,3 +1,4 @@
+import subprocess
 from tkinter import *
 from tkinter import messagebox, filedialog
 from src.widget import Widget
@@ -99,11 +100,10 @@ class HomeScreen:
             result = self.perform_antivirus_scan(file_path)
             self.show_antivirus_scan_result(result, file_path)
 
-    def perform_antivirus_scan(self, file_path):
-        # Add your antivirus scanning logic here
-        # For simplicity, this example assumes a clean scan result
-        return "No threats found."
-
+    @staticmethod
+    def perform_antivirus_scan(file_path):
+        return AntivirusScanner.perform_scan(file_path)
+    
     def show_antivirus_scan_result(self, result, file_path):
         messagebox.showinfo("Antivirus Scan Result", f"Scan Result for {file_path}:\n\n{result}")
 
@@ -112,3 +112,19 @@ class HomeScreen:
 if __name__ == "__main__":
     user_info = "admin"  # Replace with actual user info
     app = HomeScreen(user_info)
+
+class AntivirusScanner:
+    @staticmethod
+    def perform_scan(file_path):
+        try:
+            result = subprocess.run(['clamscan', '--no-summary', file_path], capture_output=True, text=True)
+
+            if result.returncode == 0:
+                return "No threats found. File is clean."
+            elif result.returncode == 1:
+                return "Threat Found: Malware detected."
+            else:
+                return f"Error occurred during the scan. ClamAV returned {result.returncode}"
+
+        except Exception as e:
+            return f"Error: {str(e)}"
