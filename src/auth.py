@@ -3,8 +3,19 @@ from mysql.connector import errorcode
 import bcrypt # pip install bcrypt
 from src.database import DB
 
-class Auth:
+# Define ANSI escape codes for colors
+class Colors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
+class Auth:
     @staticmethod
     def hash_password(password):
         salt = bcrypt.gensalt()
@@ -130,7 +141,7 @@ class Auth:
             if row:
                 hashed_password = row[0]
                 if bcrypt.checkpw(password.encode('utf-8'), hashed_password.encode('utf-8')):
-                    print("Login successful.")
+                    print(f'{Colors.OKGREEN}Login successful.{Colors.ENDC}')
                     return True
                 else:
                     print("Incorrect password.")

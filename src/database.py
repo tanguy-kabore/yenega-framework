@@ -14,20 +14,20 @@ class DB:
                     user= DATABASE_USER[0].strip(),
                     password= DATABASE_PASSWORD[0].strip(),
                 )
-                print(f"\tSuccessfully connected on database '{DATABASE}'.")
+                print(f"Successfully connected on database '{DATABASE}'.")
                 return connection
             else:
                 print(f"'{DATABASE}' is not supported")
         except mysql.connector.Error as e:
             if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                print('\tAccess denied.')
+                print('Access denied.')
             elif e.errno == errorcode.ER_BAD_DB_ERROR:
-                print('\tDatabase does not exist.')
+                print('Database does not exist.')
             else:
                 if e.errno == errorcode.ER_DUP_ENTRY:
-                    print('\tData duplicate:', str(e))
+                    print('Data duplicate:', str(e))
                 else:
-                    print('\tAn error occurred:', str(e))
+                    print('An error occurred:', str(e))
 
     @staticmethod
     def db_create(database_name):
@@ -40,24 +40,24 @@ class DB:
             databases = cursor.fetchall()
             existing_databases = [db[0] for db in databases]
             if database_name in existing_databases:
-                print(f"\tDatabase '{database_name}' already exists. No action required.")
+                print(f"Database '{database_name}' already exists. No action required.")
             else:
                 # Create the database
                 cursor.execute(f"CREATE DATABASE {database_name}")
-                print(f"\tDatabase '{database_name}' created successfully.")
+                print(f"Database '{database_name}' created successfully.")
             # Close the cursor and connection
             cursor.close()
             connection.close()
         except mysql.connector.Error as e:
             if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                print('\tAccess denied.')
+                print('Access denied.')
             elif e.errno == errorcode.ER_BAD_DB_ERROR:
-                print('\tDatabase does not exist.')
+                print('Database does not exist.')
             else:
                 if e.errno == errorcode.ER_DUP_ENTRY:
-                    print('\tData duplicate:', str(e))
+                    print('Data duplicate:', str(e))
                 else:
-                    print('\tAn error occurred:', str(e))
+                    print('An error occurred:', str(e))
 
     @staticmethod
     def db_connection():
@@ -71,20 +71,20 @@ class DB:
                     user= DATABASE_USER[0].strip(),
                     password= DATABASE_PASSWORD[0].strip(),
                 )
-                print(f"\tDatabase '{DATABASE_NAME}' is successfully selected.")
+                print(f"Database '{DATABASE_NAME}' is successfully selected.")
                 return connection
             else:
-                print(f"\t'{DATABASE}' is not supported")
+                print(f"'{DATABASE}' is not supported")
         except mysql.connector.Error as e:
             if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                print('\tAccess denied.')
+                print('Access denied.')
             elif e.errno == errorcode.ER_BAD_DB_ERROR:
-                print('\tDatabase does not exist.')
+                print('Database does not exist.')
             else:
                 if e.errno == errorcode.ER_DUP_ENTRY:
-                    print('\tData duplicate:', str(e))
+                    print('Data duplicate:', str(e))
                 else:
-                    print('\tAn error occurred:', str(e))
+                    print('An error occurred:', str(e))
 
     @staticmethod
     def create_table_from_sql_file(sql_file_path):
@@ -107,14 +107,14 @@ class DB:
             connection.close()
         except mysql.connector.Error as e:
             if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                print('\tAccess denied.')
+                print('Access denied.')
             elif e.errno == errorcode.ER_BAD_DB_ERROR:
-                print('\tDatabase does not exist.')
+                print('Database does not exist.')
             else:
                 if e.errno == errorcode.ER_DUP_ENTRY:
-                    print('\tData duplicate:', str(e))
+                    print('Data duplicate:', str(e))
                 else:
-                    print('\tAn error occurred:', str(e))
+                    print('An error occurred:', str(e))
     
     @staticmethod
     def seed_table_from_sql_file(sql_file_path):
@@ -137,14 +137,14 @@ class DB:
             connection.close()
         except mysql.connector.Error as e:
             if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                print('\tAccess denied.')
+                print('Access denied.')
             elif e.errno == errorcode.ER_BAD_DB_ERROR:
-                print('\tDatabase does not exist.')
+                print('Database does not exist.')
             else:
                 if e.errno == errorcode.ER_DUP_ENTRY:
-                    print('\tData duplicate:', str(e))
+                    print('Data duplicate:', str(e))
                 else:
-                    print('\tAn error occurred:', str(e))
+                    print('An error occurred:', str(e))
 
     @staticmethod
     def delete_all_tables():
@@ -172,18 +172,18 @@ class DB:
             for table in tables:
                 table_name = table[0]
                 cursor.execute(f"DROP TABLE {table_name}")
-                print(f"\tTable '{table_name}' dropped.")
+                print(f"Table '{table_name}' dropped.")
             # Commit the changes and close the connection
             connection.commit()
             cursor.close()
             connection.close()
         except mysql.connector.Error as e:
             if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                print('\tAccess denied.')
+                print('Access denied.')
             elif e.errno == errorcode.ER_BAD_DB_ERROR:
-                print('\tDatabase does not exist.')
+                print('Database does not exist.')
             else:
                 if e.errno == errorcode.ER_DUP_ENTRY:
-                    print('\tData duplicate:', str(e))
+                    print('Data duplicate:', str(e))
                 else:
-                    print('\tAn error occurred:', str(e))
+                    print('An error occurred:', str(e))

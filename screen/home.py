@@ -23,12 +23,14 @@ class HomeScreen:
         self.root.config(menu=self.menu_bar)
     
     def create_welcome_label(self):
-        # Create a label widget for the welcome message
-        welcome_label = Label(self.root, text="Welcome to the world of Ethical Hacking", font=("Abnes", 20, "bold"))
+        # Create a white frame
+        self.white_frame = Frame(self.root, bg='white')
+        self.white_frame.pack(fill='both', expand=True)
 
-        # Center the label in the window
-        welcome_label.pack(expand=True)
-        welcome_label.place(relx=0.5, rely=0.5, anchor=CENTER)
+        # Create a label widget for the welcome message and place it in the white frame
+        self.welcome_label = Label(self.white_frame, text="Welcome to the world of Ethical Hacking", font=("Abnes", 20, "bold"), bg='white')
+        self.welcome_label.pack(expand=True)
+        self.welcome_label.place(relx=0.5, rely=0.5, anchor=CENTER)
 
     def create_file_menu(self):
         self.file_menu = Menu(self.menu_bar, tearoff=0)
@@ -37,7 +39,7 @@ class HomeScreen:
 
     def create_tool_menu(self):
         self.tool_menu = Menu(self.menu_bar, tearoff=0)
-        self.tool_menu.add_command(label='Device', command=lambda: self.create_frame('Device'))
+        self.tool_menu.add_command(label='Device', command=self.show_device_frame)
         self.tool_menu.add_command(label='Network', command=lambda: self.create_frame('Network'))
         self.create_steganography_submenu()
         self.menu_bar.add_cascade(label="Tools", menu=self.tool_menu)
@@ -69,15 +71,21 @@ class HomeScreen:
     def create_frame(self, frame_name):
         self.close_current_frame()
         if frame_name == 'Device':
-            new_frame = Device.device_info(self.root)
+            self.current_frame = Device.device_info(self.root)
         elif frame_name == 'Network':
-            new_frame = Network.network_info(self.root)
+            self.current_frame = Network.network_info(self.root)
         else:
             # Handle unknown frame names
             messagebox.showerror("Error", "Unknown frame name: {}".format(frame_name))
-            return
-        self.current_frame = new_frame
 
+    def show_device_frame(self):
+        self.close_welcome_label()
+        self.create_frame('Device')
+
+    def close_welcome_label(self):
+        if self.white_frame is not None:
+            self.white_frame.destroy()
+            
     def close_current_frame(self):
         if self.current_frame is not None:
             self.current_frame.destroy()
